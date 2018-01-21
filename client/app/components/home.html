@@ -1,0 +1,31 @@
+<div class="container-fluid" data-ng-controller="homeCtrl">
+    <div class="col-xs-12 margin-top-10">
+        <input type="text" placeholder="enter no of rows" ng-model="rows">
+        <input type="text" placeholder="enter no of columns" ng-model="columns">
+        <button ng-click="generateGrid(rows,columns)"> GO </button>
+    </div>
+    <div class="col-xs-12 margin-top-10">
+        <table class="table table-bordered">
+            <tr ng-repeat="row in arr">
+                <td ng-repeat="col in row track by $index">
+                    <div ng-show="!(marioX === $parent.$index && marioY === $index)">
+                        <div ng-show="isFood(arr[$parent.$index][$index])">
+                            F
+                            <!-- {{arr[$parent.$index][$index]}} -->
+                        </div>
+                        <div ng-show="!isFood(arr[$parent.$index][$index])">
+                            O
+                            <!-- {{arr[$parent.$index][$index]}} -->
+                        </div>
+                    </div>
+                    <div class="bold" ng-show="marioX === $parent.$index && marioY === $index">
+                        M
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-xs-12">
+        <button ng-click="startGame()" ng-keydown="key($event)" />start</button>
+    </div>
+</div>
